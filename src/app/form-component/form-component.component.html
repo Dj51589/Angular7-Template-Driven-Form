@@ -1,0 +1,122 @@
+<h2>Reactive Form Demo</h2>
+<div class="flex-container align-center flex-column">
+  <div class="">
+    <form [formGroup]="personForm" (ngSubmit)="onSubmit()" class="form">
+      <div>
+        <div class="sub-heading">
+          <p>Basic Details</p>
+        </div>
+        
+        <div class="flex-container flex-wrap">
+          <div class="element">
+            <label>First Name</label>
+            <input type="text" formControlName="firstName">
+          </div>
+
+          <div class="element">
+            <label>Last Name</label>
+            <input type="text" formControlName="lastName">
+          </div>
+
+          <div class="element">
+            <label>Marital Status</label>
+            <div class="flex-container align-center">
+              <input type="radio" formControlName="maritalStatus" value="married">
+              <span>Married</span>
+              <input type="radio" formControlName="maritalStatus" value="un-married">
+              <span>Un-Married</span>
+            </div>
+          </div>
+
+          <div class="element">
+            <label>Highest Qualification</label>
+            <select formControlName="qualification">
+              <option>-</option>
+              <option *ngFor="let degree of degrees">
+                {{degree}}
+              </option>
+            </select>
+          </div>
+
+          <div class="element">
+            <label>Contact Number</label>
+            <input type="text" formControlName="contactNumber">
+          </div>
+
+          <div class="element">
+            <label>Email ID</label>
+            <input type="text" formControlName="emailId">
+          </div>
+
+          <div class="element">
+            <label>DOB</label>
+            <input type="date" formControlName="dob">
+          </div>
+
+          <div class="element">
+            <label>Hobbies</label>
+            <div class="flex-container">
+              <label *ngFor="let hobby of personForm.controls.hobbies.controls; let i=index;"
+                class="flex-container  align-center multi-checkbox">
+                <input type="checkbox" [formControl]="hobby">
+                {{myhobbies[i].name}}
+              </label>
+            </div>
+          </div>
+
+          <div class="element full-width">
+            <label>Description</label>
+            <textarea formControlName="description" rows="5"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div formGroupName="address">
+        <div class="sub-heading">
+          <p>Address</p>
+        </div>
+        <div class="flex-container flex-wrap">
+          <div class="element">
+            <label>Street</label>
+            <input type="text" formControlName="street">
+          </div>
+
+          <div class="element">
+            <label>City</label>
+            <input type="text" formControlName="city">
+          </div>
+
+          <div class="element">
+            <label>Country</label>
+            <input type="text" formControlName="country">
+          </div>
+
+          <div class="element">
+            <label>Zipcode</label>
+            <input type="text" formControlName="zipcode">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div>
+    Button box
+  </div> -->
+</div>
+<!-- <div>
+  <h3>Basic Details:</h3>
+  {{personForm.controls.firstName.value}}
+  {{personForm.controls.lastName.value}}
+  {{personForm.controls.maritalStatus.value}}
+  {{personForm.controls.qualification.value}}
+  {{personForm.controls.contactNumber.value}}
+  {{personForm.controls.emailId.value}}
+  {{personForm.controls.dob.value}}
+  {{personForm.controls.hobbies.value}}
+  {{personForm.controls.description.value}}
+  <h3>Address Details:</h3>
+  {{personForm.controls.address.controls.street.value}}
+  {{personForm.controls.address.controls.city.value}}
+  {{personForm.controls.address.controls.country.value}}
+  {{personForm.controls.address.controls.zipcode.value}}
+</div> -->
