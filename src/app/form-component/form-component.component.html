@@ -58,7 +58,7 @@
             <div class="flex-container">
               <label *ngFor="let hobby of personForm.controls.hobbies.controls; let i=index;"
                 class="flex-container  align-center multi-checkbox">
-                <input type="checkbox" [formControl]="hobby">
+                <input type="checkbox" [formControl]="hobby" (change)="onHobbyChange(hobby, myhobbies[i].name);">
                 {{myhobbies[i].name}}
               </label>
             </div>
@@ -99,11 +99,11 @@
       </div>
     </form>
   </div>
-  <!-- <div>
+  <div>
     Button box
-  </div> -->
+  </div>
 </div>
-<!-- <div>
+<div>
   <h3>Basic Details:</h3>
   {{personForm.controls.firstName.value}}
   {{personForm.controls.lastName.value}}
@@ -112,11 +112,12 @@
   {{personForm.controls.contactNumber.value}}
   {{personForm.controls.emailId.value}}
   {{personForm.controls.dob.value}}
-  {{personForm.controls.hobbies.value}}
+  <!-- {{personForm.controls.hobbies.value}} -->
+  {{selectedHobbies}}
   {{personForm.controls.description.value}}
   <h3>Address Details:</h3>
   {{personForm.controls.address.controls.street.value}}
   {{personForm.controls.address.controls.city.value}}
   {{personForm.controls.address.controls.country.value}}
   {{personForm.controls.address.controls.zipcode.value}}
-</div> -->
+</div>
