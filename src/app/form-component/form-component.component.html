@@ -8,14 +8,27 @@
         </div>
         
         <div class="flex-container flex-wrap">
-          <div class="element">
+          <div class="element"
+            [ngClass]="{mandatory: personForm.controls.firstName.validator, inValid: personForm.controls.firstName.invalid}">
             <label>First Name</label>
             <input type="text" formControlName="firstName">
+            <div *ngIf="personForm.controls.firstName.invalid">
+              <p *ngIf="personForm.controls.firstName.errors.required" class="error-message">
+                First Name Required
+              </p>
+            </div>
           </div>
 
-          <div class="element">
+          <div class="element"
+            [ngClass]="{mandatory: personForm.controls.lastName.validator, inValid:
+            personForm.controls.lastName.invalid}">
             <label>Last Name</label>
             <input type="text" formControlName="lastName">
+            <div *ngIf="personForm.controls.lastName.invalid">
+              <p *ngIf="personForm.controls.lastName.errors.required" class="error-message">
+                Last Name Required
+              </p>
+            </div>
           </div>
 
           <div class="element">
@@ -38,14 +51,34 @@
             </select>
           </div>
 
-          <div class="element">
+          <div class="element"
+            [ngClass]="{mandatory: personForm.controls.contactNumber.validator, inValid:
+            personForm.controls.contactNumber.invalid}">
             <label>Contact Number</label>
             <input type="text" formControlName="contactNumber">
+            <div *ngIf="personForm.controls.contactNumber.invalid">
+              <p *ngIf="personForm.controls.contactNumber.errors.pattern" class="error-message">
+                Invalid Contact Number Entered
+              </p>
+              <p *ngIf="personForm.controls.contactNumber.errors.required" class="error-message">
+                Contact Number Required
+              </p>
+            </div>
           </div>
 
-          <div class="element">
+          <div class="element"
+            [ngClass]="{mandatory: personForm.controls.emailId.validator, inValid:
+            personForm.controls.emailId.invalid}">
             <label>Email ID</label>
             <input type="text" formControlName="emailId">
+            <div *ngIf="personForm.controls.emailId.invalid">
+              <p *ngIf="personForm.controls.emailId.errors.pattern" class="error-message">
+                Invalid Email ID Entered
+              </p>
+              <p *ngIf="personForm.controls.emailId.errors.required" class="error-message">
+                Email ID Required
+              </p>
+            </div>
           </div>
 
           <div class="element">

@@ -45,9 +45,15 @@ export class FormComponentComponent implements OnInit {
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
       maritalStatus: [false],
-      qualification: [""],
-      contactNumber: [null, Validators.pattern("[]")],
-      emailId: [null, Validators.pattern("[]")],
+      qualification: [null],
+      contactNumber: [
+        null,
+        [Validators.required, Validators.pattern("[/^d+$/]")]
+      ],
+      emailId: [
+        null,
+        [Validators.required, Validators.pattern("[/S+@S+.S+/]")]
+      ],
       dob: [null],
       hobbies: this.buildHobbies(this.myhobbies),
       address: this.fb.group({
@@ -56,7 +62,7 @@ export class FormComponentComponent implements OnInit {
         country: [null],
         zipcode: [null]
       }),
-      description: [""]
+      description: [null]
     });
   }
 
