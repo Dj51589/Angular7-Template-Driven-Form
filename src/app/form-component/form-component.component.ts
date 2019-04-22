@@ -11,7 +11,7 @@ export class FormComponentComponent implements OnInit {
   personForm: any;
   degrees = ["Baord", "Graduate", "Post Graduate", "Doctor", "PhD"];
   selectedHobbies: [string];
-  myhobbies = [
+  myhobbies: any = [
     {
       name: "Sports",
       value: "sports"
@@ -37,6 +37,7 @@ export class FormComponentComponent implements OnInit {
 
   ngOnInit() {
     this.createFormInputs();
+    this.setFormInputs();
   }
 
   createFormInputs() {
@@ -48,7 +49,7 @@ export class FormComponentComponent implements OnInit {
       contactNumber: [null, Validators.pattern("[]")],
       emailId: [null, Validators.pattern("[]")],
       dob: [null],
-      hobbies: this.buildHobbies(),
+      hobbies: this.buildHobbies(this.myhobbies),
       address: this.fb.group({
         street: [null],
         city: [null],
@@ -59,9 +60,9 @@ export class FormComponentComponent implements OnInit {
     });
   }
 
-  buildHobbies() {
-    const arr = this.myhobbies.map(hobby => {
-      return this.fb.control(false);
+  buildHobbies(hobbiesInputs) {
+    const arr = hobbiesInputs.map(hobby => {
+      return this.fb.control(hobby.selected || false);
     });
     return this.fb.array(arr);
   }
@@ -75,5 +76,34 @@ export class FormComponentComponent implements OnInit {
         return hobby;
       }
     });
+  }
+
+  setFormInputs() {
+    const myhobbies: any = [
+      {
+        name: "Sports",
+        value: "sports"
+      },
+      {
+        name: "Music",
+        value: "music",
+        selected: true
+      },
+      {
+        name: "Movie",
+        value: "movie",
+        selected: true
+      },
+      {
+        name: "Reading",
+        value: "reading"
+      },
+      {
+        name: "Writing",
+        value: "writing"
+      }
+    ];
+    this.personForm.controls.hobbies = this.buildHobbies(myhobbies);
+    this.onHobbyChange();
   }
 }
