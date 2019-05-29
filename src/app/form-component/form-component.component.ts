@@ -29,8 +29,8 @@ export class FormComponentComponent implements OnInit {
       value: "reading"
     },
     {
-      name: "Writing",
-      value: "writing"
+      name: 'Writing',
+      value: 'writing'
     }
   ];
   constructor(private fb: FormBuilder) {}
@@ -44,15 +44,15 @@ export class FormComponentComponent implements OnInit {
     this.personForm = this.fb.group({
       firstName: [null, Validators.required],
       lastName: [null, Validators.required],
-      maritalStatus: [false],
+      maritalStatus: [null],
       qualification: [null],
       contactNumber: [
         null,
-        [Validators.required, Validators.pattern("[/^d+$/]")]
+        [Validators.required, Validators.pattern('[0-9]*')]
       ],
       emailId: [
         null,
-        [Validators.required, Validators.pattern("[/S+@S+.S+/]")]
+        [Validators.required, Validators.email]
       ],
       dob: [null],
       hobbies: this.buildHobbies(this.myhobbies),
