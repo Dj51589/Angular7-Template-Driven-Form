@@ -1,4 +1,4 @@
-<h2>Reactive Form Demo</h2>
+<h2 class="flex-container justify-center">Angular Form Demo</h2>
 <div class="flex-container justify-center">
   <div class="flex-container align-center flex-column">
     <div class="">
@@ -13,12 +13,12 @@
               class="element"
               [ngClass]="{
                 mandatory: personForm.controls.firstName.validator,
-                inValid: personForm.controls.firstName.invalid
+                inValid: formSubmitted && personForm.controls.firstName.invalid
               }"
             >
               <label>First Name</label>
               <input type="text" formControlName="firstName" />
-              <div *ngIf="personForm.controls.firstName.invalid">
+              <div *ngIf="formSubmitted && personForm.controls.firstName.invalid">
                 <p
                   *ngIf="personForm.controls.firstName.errors.required"
                   class="error-message"
@@ -32,12 +32,12 @@
               class="element"
               [ngClass]="{
                 mandatory: personForm.controls.lastName.validator,
-                inValid: personForm.controls.lastName.invalid
+                inValid: formSubmitted && personForm.controls.lastName.invalid
               }"
             >
               <label>Last Name</label>
               <input type="text" formControlName="lastName" />
-              <div *ngIf="personForm.controls.lastName.invalid">
+              <div *ngIf="formSubmitted && personForm.controls.lastName.invalid">
                 <p
                   *ngIf="personForm.controls.lastName.errors.required"
                   class="error-message"
@@ -79,12 +79,12 @@
               class="element"
               [ngClass]="{
                 mandatory: personForm.controls.contactNumber.validator,
-                inValid: personForm.controls.contactNumber.invalid
+                inValid: formSubmitted && personForm.controls.contactNumber.invalid
               }"
             >
               <label>Contact Number</label>
               <input type="text" formControlName="contactNumber" />
-              <div *ngIf="personForm.controls.contactNumber.invalid">
+              <div *ngIf="formSubmitted && personForm.controls.contactNumber.invalid">
                 <p
                   *ngIf="personForm.controls.contactNumber.errors.pattern"
                   class="error-message"
@@ -104,12 +104,12 @@
               class="element"
               [ngClass]="{
                 mandatory: personForm.controls.emailId.validator,
-                inValid: personForm.controls.emailId.invalid
+                inValid: formSubmitted && personForm.controls.emailId.invalid
               }"
             >
               <label>Email ID</label>
               <input type="text" formControlName="emailId" />
-              <div *ngIf="personForm.controls.emailId.invalid">
+              <div *ngIf="formSubmitted && personForm.controls.emailId.invalid">
                 <p
                   *ngIf="
                     personForm.controls.emailId.errors.email ||
@@ -189,11 +189,12 @@
       </form>
     </div>
     <div>
-      Button box
+      <button class="btn-solid" (click)="validateForm();">Submit</button>
+      <button (click)="resetForm();">Reset</button>
     </div>
   </div>
 
-  <div class="details">
+  <div class="details" *ngIf="showOutput">
     <table>
       <tr>
         <td colspan="2">

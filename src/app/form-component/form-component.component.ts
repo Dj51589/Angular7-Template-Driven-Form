@@ -1,38 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
-import * as _ from "lodash";
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import * as _ from 'lodash';
 
 @Component({
-  selector: "app-form-component",
-  templateUrl: "./form-component.component.html",
-  styleUrls: ["./form-component.component.scss"]
+  selector: 'app-form-component',
+  templateUrl: './form-component.component.html',
+  styleUrls: ['./form-component.component.scss']
 })
 export class FormComponentComponent implements OnInit {
-  personForm: any;
-  degrees = ["Baord", "Graduate", "Post Graduate", "Doctor", "PhD"];
+  personForm: FormGroup;
+  degrees = ['Baord', 'Graduate', 'Post Graduate', 'Doctor', 'PhD'];
   selectedHobbies: [string];
   myhobbies: any = [
     {
-      name: "Sports",
-      value: "sports"
+      name: 'Sports',
+      value: 'sports'
     },
     {
-      name: "Music",
-      value: "music"
+      name: 'Music',
+      value: 'music'
     },
     {
-      name: "Movie",
-      value: "movie"
+      name: 'Movie',
+      value: 'movie'
     },
     {
-      name: "Reading",
-      value: "reading"
+      name: 'Reading',
+      value: 'reading'
     },
     {
       name: 'Writing',
       value: 'writing'
     }
   ];
+  formSubmitted: boolean;
+  showOutput: boolean;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -74,7 +76,7 @@ export class FormComponentComponent implements OnInit {
   }
 
   onHobbyChange() {
-    this.selectedHobbies = _.map(this.personForm.controls.hobbies.controls, (hobby, i) => {
+    this.selectedHobbies = _.map(this.personForm.controls.hobbies['controls'], (hobby, i) => {
       return hobby.value && this.myhobbies[i].value;
     });
     this.selectedHobbies = _.filter(this.selectedHobbies, function(hobby) {
@@ -87,29 +89,39 @@ export class FormComponentComponent implements OnInit {
   setFormInputs() {
     const myhobbies: any = [
       {
-        name: "Sports",
-        value: "sports"
+        name: 'Sports',
+        value: 'sports'
       },
       {
-        name: "Music",
-        value: "music",
+        name: 'Music',
+        value: 'music',
         selected: true
       },
       {
-        name: "Movie",
-        value: "movie",
+        name: 'Movie',
+        value: 'movie',
         selected: true
       },
       {
-        name: "Reading",
-        value: "reading"
+        name: 'Reading',
+        value: 'reading'
       },
       {
-        name: "Writing",
-        value: "writing"
+        name: 'Writing',
+        value: 'writing'
       }
     ];
     this.personForm.controls.hobbies = this.buildHobbies(myhobbies);
     this.onHobbyChange();
+  }
+
+  validateForm() {
+    this.formSubmitted = true;
+    this.showOutput = this.personForm.valid;
+  }
+
+  resetForm() {
+    this.formSubmitted = false;
+    this.personForm.reset();
   }
 }
