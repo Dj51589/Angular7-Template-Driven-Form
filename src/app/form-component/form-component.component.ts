@@ -122,6 +122,7 @@ export class FormComponentComponent implements OnInit {
 
   resetForm() {
     this.formSubmitted = false;
+    this.showOutput = false;
     this.personForm.reset();
   }
 }
