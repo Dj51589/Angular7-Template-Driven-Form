@@ -1,42 +1,51 @@
 <div>
-  <form #person="ngForm" (ngSubmit)="submitForm(person);" novalidate>
-    Enter First Name
-    <input type="text" 
-      [(ngModel)]="person.firstName" 
-      required 
-      pattern="[A-Za-z]*" 
-      #firstName="ngModel" 
-      name="fName">
-    <div *ngIf="person.submitted && firstName.invalid">
-      <div *ngIf="firstName.errors.required">
-        First Name is required.
-      </div>
-      <div *ngIf="firstName.errors.pattern">
-        Invalid value for First Name
-      </div>
-    </div>
-    Enter Last Name
-    <input type="text" 
-      [(ngModel)]="person.lastName" 
-      required 
-      pattern="[A-Za-z]*" 
-      #lastName="ngModel" 
-      name="lName">
-    <div *ngIf="person.submitted && lastName.invalid">
-      <div *ngIf="lastName.errors.required">
-        Last Name is required.
-      </div>
-      <div *ngIf="lastName.errors.pattern">
-        Invalid value for Last Name
+  <form #person="ngForm" (ngSubmit)="submitForm(person)" novalidate>
+    <div>
+      Enter First Name
+      <input
+        type="text"
+        [(ngModel)]="person.firstName"
+        required
+        pattern="[A-Za-z]*"
+        #firstName="ngModel"
+        name="fName"
+      />
+      <div *ngIf="person.submitted && firstName.invalid">
+        <div *ngIf="firstName.errors.required">
+          First Name is required.
+        </div>
+        <div *ngIf="firstName.errors.pattern">
+          Invalid value for First Name
+        </div>
       </div>
     </div>
     <div>
+      Enter Last Name
+      <input
+        type="text"
+        [(ngModel)]="person.lastName"
+        required
+        pattern="[A-Za-z]*"
+        #lastName="ngModel"
+        name="lName"
+      />
+      <div *ngIf="person.submitted && lastName.invalid">
+        <div *ngIf="lastName.errors.required">
+          Last Name is required.
+        </div>
+        <div *ngIf="lastName.errors.pattern">
+          Invalid value for Last Name
+        </div>
+      </div>
+    </div>
+
+    <div>
       <button type="submit" class="btn-solid">Submit</button>
-      <button type="button" (click)="clearForm(person);">Reset</button>
+      <button type="button" (click)="clearForm(person)">Reset</button>
     </div>
     <div *ngIf="showOutput">
-      Firs Name: {{person.firstName}}
-      Last Name: {{person.lastName}}
+      <p>Firs Name: {{ person.firstName }} </p>
+      <p>Last Name: {{ person.lastName }}</p>
     </div>
   </form>
 </div>
