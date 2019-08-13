@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-form-component',
@@ -9,23 +7,21 @@ import * as _ from 'lodash';
 })
 
 export class FormComponentComponent implements OnInit {
-  person: {
-    firstName: 'Dheeraj',
-    lstName: 'Jaiswal'
-  };
-  showOutput = false;
-  constructor(private fb: FormBuilder) {}
+  person: {};
+  constructor() {}
 
   ngOnInit() {
+    this.person = {
+      firstName: 'Dheeraj',
+      lastName: 'Jaiswal'
+    };
   }
 
   submitForm = (form: any) => {
-    this.showOutput = form.submitted && form.valid;
   }
 
   clearForm = (form: any) => {
     form.reset();
     form.submitted = false;
-    this.showOutput = false;
   }
 }

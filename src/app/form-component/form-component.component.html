@@ -1,5 +1,5 @@
 <div>
-  <form #person="ngForm" (ngSubmit)="submitForm(person)" novalidate>
+  <form #personForm="ngForm" (ngSubmit)="submitForm(personForm)" novalidate>
     <div>
       Enter First Name
       <input
@@ -10,7 +10,7 @@
         #firstName="ngModel"
         name="fName"
       />
-      <div *ngIf="person.submitted && firstName.invalid">
+      <div *ngIf="personForm.submitted && firstName.invalid">
         <div *ngIf="firstName.errors.required">
           First Name is required.
         </div>
@@ -29,7 +29,7 @@
         #lastName="ngModel"
         name="lName"
       />
-      <div *ngIf="person.submitted && lastName.invalid">
+      <div *ngIf="personForm.submitted && lastName.invalid">
         <div *ngIf="lastName.errors.required">
           Last Name is required.
         </div>
@@ -41,9 +41,9 @@
 
     <div>
       <button type="submit" class="btn-solid">Submit</button>
-      <button type="button" (click)="clearForm(person)">Reset</button>
+      <button type="button" (click)="clearForm(personForm)">Reset</button>
     </div>
-    <div *ngIf="showOutput">
+    <div *ngIf="personForm.submitted && personForm.valid">
       <p>Firs Name: {{ person.firstName }} </p>
       <p>Last Name: {{ person.lastName }}</p>
     </div>
