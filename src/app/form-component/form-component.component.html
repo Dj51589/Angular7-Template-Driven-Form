@@ -1,16 +1,21 @@
-<div>
+<div class="flex-container align-center flex-column">
   <form #personForm="ngForm" (ngSubmit)="submitForm(personForm)" novalidate>
-    <div>
-      Enter First Name
-      <input
-        type="text"
-        [(ngModel)]="person.firstName"
-        required
-        pattern="[A-Za-z]*"
-        #firstName="ngModel"
-        name="fName"
-      />
-      <div *ngIf="personForm.submitted && firstName.invalid">
+    <div class="element">
+      <div class="mandatory" 
+        [ngClass]="{'inValid': personForm.submitted && firstName.invalid}">
+        <label>
+          Enter First Name
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="person.firstName"
+          required
+          pattern="[A-Za-z]*"
+          #firstName="ngModel"
+          name="fName"
+        />
+      </div>
+      <div *ngIf="personForm.submitted && firstName.invalid" class="m-t-10 error-message">
         <div *ngIf="firstName.errors.required">
           First Name is required.
         </div>
@@ -19,17 +24,22 @@
         </div>
       </div>
     </div>
-    <div>
-      Enter Last Name
-      <input
-        type="text"
-        [(ngModel)]="person.lastName"
-        required
-        pattern="[A-Za-z]*"
-        #lastName="ngModel"
-        name="lName"
-      />
-      <div *ngIf="personForm.submitted && lastName.invalid">
+    <div class="element">
+      <div class="mandatory" 
+        [ngClass]="{'inValid': personForm.submitted && lastName.invalid}">
+        <label>
+          Enter Last Name
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="person.lastName"
+          required
+          pattern="[A-Za-z]*"
+          #lastName="ngModel"
+          name="lName"
+        />
+      </div>
+      <div *ngIf="personForm.submitted && lastName.invalid" class="m-t-10 error-message">
         <div *ngIf="lastName.errors.required">
           Last Name is required.
         </div>
@@ -44,7 +54,7 @@
       <button type="button" (click)="clearForm(personForm)">Reset</button>
     </div>
     <div *ngIf="personForm.submitted && personForm.valid">
-      <p>Firs Name: {{ person.firstName }} </p>
+      <p>Firs Name: {{ person.firstName }}</p>
       <p>Last Name: {{ person.lastName }}</p>
     </div>
   </form>
